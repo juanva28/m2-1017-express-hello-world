@@ -1,10 +1,12 @@
 <%- include partials/bioprint.ejs %>
 <h2><%= title %></h2>
-<form action="/simpsons?hola=adios" method="POST">
+<form action="/simpsons?color=green" style="background:<%= color %>" method="POST">
   <label for="superhero-input">Personaje de los simpsons</label>
   <input id="superhero-input" type="text" name="personaje">
   <button type="submit">Cambia personaje!</button>
 </form>
+
+<%- pepe %>
 
 <% images.forEach( (image,i) => { %>
   <div>

@@ -50,7 +50,9 @@ app.get('/simpsons',(req,res)=>{
   console.log(req.query);
   res.render('simpsons', {
     title: "EL GET",
-    images:getImagenes(req.query.personaje)
+    images:getImagenes(req.query.personaje),
+    color:"white",
+    pepe: '<p class="hola">holaa</p>'
   });
 });
 
@@ -58,9 +60,12 @@ app.get('/simpsons',(req,res)=>{
 app.post('/simpsons',(req,res) => {
   console.log("el body es: ");
   console.log(req.body);
+  console.log(req.query)
   res.render('simpsons', {
     title: "EL POST",
-    images:getImagenes(req.body.personaje)
+    images:getImagenes(req.body.personaje),
+    color: req.query.color,
+    pepe: "hola que tal"
   });
 });
 
