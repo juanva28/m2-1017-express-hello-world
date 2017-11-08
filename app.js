@@ -1,6 +1,7 @@
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const app = express();
 
 
@@ -12,7 +13,18 @@ app.set('layout', __dirname + '/views/layout/main-layout');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(morgan('dev'));
+
+let a = (req,res,next) =>{
+  console.log("EL MIDDLEWARE DE MARC");
+  next();
+}
+
+app.use(a)
+
 app.use(express.static('public'));
+
+
 
 app.get('/',(req,res)=>{
   res.render('home');
@@ -34,6 +46,7 @@ const getImagenes = (personaje) => {
 }
 
 app.get('/simpsons',(req,res)=>{
+  console.log("la query es: ");
   console.log(req.query);
   res.render('simpsons', {
     title: "EL GET",
@@ -43,6 +56,7 @@ app.get('/simpsons',(req,res)=>{
 
 
 app.post('/simpsons',(req,res) => {
+  console.log("el body es: ");
   console.log(req.body);
   res.render('simpsons', {
     title: "EL POST",
